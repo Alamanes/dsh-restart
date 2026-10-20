@@ -1,0 +1,51 @@
+{
+  "name": "dsh-restart",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DeepSeek Harness 彻底重启插件：会话标题栏右上角的「彻底关闭并重新启动 DSH」按钮，以及同名工具 restart_dsh；重启前记录正在运行的其他会话，重启后自动向它们发送「继续工作」。",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "restart",
+    "relaunch",
+    "restart_dsh",
+    "hot-reload",
+    "debug"
+  ],
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    }
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-session"
+      ]
+    }
+  }
+}
